@@ -46,7 +46,7 @@ main()
 	while (dep = readdir(dp))
 	{
 		// Pass ., .. Directory 
-		if ((strcmp(dep->d_name, ".") == 0) || (strcmp(dep->d_name, "..") == 0))
+		if (((int)(dep->d_name)[0]) == 46)	// 16.10.17 Edited : Pass ., .., Hidden File
 			 continue;
 
 		// File open
@@ -66,8 +66,8 @@ main()
 	while (dep = readdir(dp))
 	{
 		// Pass ., .. Directory
-		if ((strcmp(dep->d_name, ".") == 0) || (strcmp(dep->d_name, "..") == 0))
-			continue;
+		if (((int)(dep->d_name)[0]) == 46)	// 16.10.17 Edited : Pass ., .., Hidden File
+			 continue;
 
 		// File stat load
 		lstat(dep->d_name, &statbuf);
